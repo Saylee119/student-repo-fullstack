@@ -18,12 +18,12 @@ const calculateChange = (input) => {
     const pennies = Math.round(remainder * 100);
     
     if(input === 1){
-      console.log(`${dollers} dollar, ${quarters} quarter, ${dimes} dime, ${nickles} nikel, ${pennies} penny`);
+      console.log(`${dollers} dollar, ${quarters} quarter, ${dimes} dime, ${nickles} nickel, ${pennies} penny`);
     }
     else if(input <1){
-      console.log(`${quarters} quarters, ${dimes} dime, ${nickles} nikels, ${pennies} pennies`);
+      console.log(`${quarters} quarters, ${dimes} dime, ${nickles} nickels, ${pennies} pennies`);
     }else{
-      console.log(`${dollers} dollars, ${quarters} quarters, ${dimes} dime, ${nickles} nikels, ${pennies} pennies`);
+      console.log(`${dollers} dollars, ${quarters} quarters, ${dimes} dime, ${nickles} nickels, ${pennies} pennies`);
     }
   }else{
     console.log("Error: the number is too large or negative");
