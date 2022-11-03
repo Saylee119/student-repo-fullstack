@@ -43,43 +43,31 @@ const server = http.createServer((req, res) => {
     res.end();
   } 
   else if (req.url === '/welcome') {
-    let routeResults = getRoutes();
-
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(`<h1>Hey There!</h1>`);
     res.write(`<h1>Welcome...</h1>`);
     res.end();
   } 
   else if (req.url === '/redirect') {
-    let routeResults = getRoutes();
-
     res.writeHead(302, { 'location':'/redirected','Content-Type': 'text/html' });
     res.end();
   } 
   else if (req.url === '/redirected') {
-    let routeResults = getRoutes();
-
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(`<h1>You've successfully redirected to the "/redirected" page :)</h1>`);
     res.end();
   } 
   else if (req.url === '/cache') {
-    let routeResults = getRoutes();
-
     res.writeHead(200, { 'Content-Type': 'text/html', 'Cache-control':'max-age = 86400' });
     res.write(`<h1>This resource was cached.</h1>`);
     res.end();
   } 
   else if (req.url === '/cookie') {
-    let routeResults = getRoutes();
-
     res.writeHead(200, { 'Content-Type': 'text/html', 'Set-Cookie': 'hello=world' });
     res.write(`<h1>Cookies...yummm</h1>`);
     res.end();
   }
   else if (req.url === '/check-cookies') {
-    let routeResults = getRoutes();
-
     res.writeHead(200, { 'Content-Type': 'text/html' });
     if(req.headers.cookie === 'hello=world'){
       res.write(`<h1>YES</h1>`);
