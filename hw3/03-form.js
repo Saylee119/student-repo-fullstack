@@ -6,7 +6,10 @@ const querystring = require("querystring");
 const file = new staticServe.Server("./");
 
 const server = http.createServer((req, res) => {
-  if (req.method === "GET" && req.url === "/") {
+  if (req.url === "/") {
+    res.writeHead(302, { Location: "/form" });
+    res.end();
+  } else if (req.method === "GET" && req.url === "/form") {
     file.serveFile("03-form.html", 200, {}, req, res);
   } else if (req.method === "POST" && req.url === "/submit") {
     let body = "";
