@@ -69,11 +69,11 @@ const server = http.createServer((req, res) => {
   }
   else if (req.url === '/check-cookies') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    if(req.headers.cookie === 'hello=world'){
-      res.write(`<h1>YES</h1>`);
+    if(req.headers.cookie === 'hello'){
+      res.write(`yes`);
     }
     else{
-      res.write(`<h1>NO</h1>`);
+      res.write(`no`);
     }
     res.end();
   }
