@@ -1,5 +1,6 @@
 const http = require('http');
-const port = process.env.PORT || 5001;
+
+const port = process.env.PORT || 5000;
 
 const server = http.createServer((req, res) => {
   const routes = [
@@ -31,9 +32,15 @@ const server = http.createServer((req, res) => {
     res.write(`<ul> ${routeResults} </ul>`);
   }
 
-  // Add your code here
-
+  const parameters = url.searchParams;
+  let tableStyle = `<table border = "1">`;
+  parameters.forEach((element, index) => {
+    tableStyle += `<tr><td>${index}</td><td>${element}</td>`;
+  });
+  tableStyle += '</table>';
+  res.write(tableStyle);
   res.end();
+
 });
 
 server.listen(port, () => {
