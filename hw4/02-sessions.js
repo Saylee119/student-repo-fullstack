@@ -1,15 +1,37 @@
-const express = require('express');
-const session = require('express-session');
+const express = require("express");
+const session = require("express-session");
 const app = express();
 const port = process.env.PORT || 5001;
 
-// Add your code here
+app.use(
+  session({
+    store: new session.MemoryStore(),
+    secret: "full-stack",
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
-// Use the express-session module
-app.use(/** ... */);
+app.get("/favicon.ico", (req, res) => res.status(204));
 
-app.get('/', (req, res) => {
-  // Add your code here
+app.use((req, res, next) => {
+  res.setHeader("content-type", "text/html");
+  res.write(`<p>Currently on route: ${req.url}</p>`);
+  res.write(`<p>Peviously Visited:</p>`);
+  if (req.session.previouslyVisited) {
+    req.session.previouslyVisited.push(`${req.url}`);
+  } else {
+    req.session.previouslyVisited = [];
+    req.session.previouslyVisited.push(`${req.url}`);
+  }
+  req.session.previouslyVisited.forEach(url => {
+    res.write(`<p>${url}</p>`);
+  });
+  next();
+});
+
+app.get("/*", (req, res) => {
+  res.end();
 });
 
 app.listen(port, () => {
